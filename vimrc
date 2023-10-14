@@ -77,6 +77,7 @@ nnoremap <F2> :YcmCompleter RefactorRename<Space>
 nnoremap <F3> :YcmCompleter FixIt<CR>
 map ù :YcmCompleter GoTo<CR>
 map gt :YcmCompleter GoToType<CR>
+map g? :YcmCompleter GetType<CR>
 map ! <C-O>
 " nnoremap ù <C-]>
 " nnoremap ! <C-t>
