@@ -1,0 +1,39 @@
+[user]
+name = Quentin Santos
+email = qsantos@qsantos.fr
+
+[merge]
+conflictstyle = diff3
+
+[alias]
+fixup = commit --patch --fixup
+# ad = -c interactive.diffFilter=\"git diff --color-words\" add -p
+# br = branch
+# cm = commit
+# co = checkout
+# d = difftool
+# df = diff --patience --color-words
+# edit = "!vim `git ls-files -m` -p"
+# fix = commit --patch --amend --no-edit
+# force = push --force-with-lease
+# lg = log --oneline --decorate
+# m = mergetool
+# ra = rebase --abort
+# rc = rebase --continue
+# ri = rebase --autosquash --autostash -i
+# st = status --short --branch
+# up = remote update
+[diff]
+tool = vimdiff
+
+[merge]
+tool = vimdiff
+conflictstyle = diff3
+[core]
+	excludesfile = ~/.gitignore
+[pull]
+	ff = only
+# [blame]
+# 	ignoreRevsFile = ignorerevs
+[init]
+	defaultBranch = master
