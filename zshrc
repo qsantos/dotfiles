@@ -1,0 +1,89 @@
+setopt histignorealldups #sharehistory
+setopt auto_pushd
+#setopt autocd
+#setopt no_auto_remove_slash
+#unsetopt correct glob
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
+
+HISTSIZE=100000000
+SAVEHIST=100000000
+HISTFILE=~/.zsh_history
+REPORTTIME=1
+setopt extended_history # logs the start and elapsed time
+#setopt inc_append_history
+#setopt hist_ignore_dups
+#setopt hist_ignore_all_dups
+#setopt hist_find_no_dups
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+source ~/.bashrc
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+zstyle ':completion:*' hosts off
+
+# apt-get autocompletion
+# next line is commented out because it breaks git alias completion
+# setopt complete_aliases
+compdef _ins ins
+_ins(){
+    service=apt CURRENT+=1
+    words=(apt install)
+    _apt
+}
+compdef _rem rem
+_rem(){
+    service=apt CURRENT+=1
+    words=(apt remove)
+    _apt
+}
+
+# SSH autocompletion
+compdef s=ssh
+compdef cfg-sync=ssh
+compdef tmux-ssh=ssh
+
+[[ "$(hostname)" == ""         ]] && HOSTCOLOR="cyan"
+[[ "$(hostname)" == "milo"     ]] && HOSTCOLOR="red"
+[[ "$(hostname)" == "aslan"    ]] && HOSTCOLOR="yellow"
+[[ "$(hostname)" == "ender"    ]] && HOSTCOLOR="black"
+[[ "$(hostname)" == ""         ]] && HOSTCOLOR="magenta"
+PS1="%F{green}%~%F{$HOSTCOLOR}%#%F{white} "
+
+# Allow Ctrl-z to toggle between suspend and resume
+# from https://news.ycombinator.com/item?id=34309989
+function Resume {
+  fg
+  zle push-input
+  BUFFER=""
+  zle accept-line
+}
+zle -N Resume
+bindkey "^Z" Resume
+
+# compatibility with bash completion
+autoload bashcompinit && bashcompinit
