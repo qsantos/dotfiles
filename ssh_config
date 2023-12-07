@@ -1,0 +1,18 @@
+Host XXX
+    Hostname XXX
+    Port XXX
+    User XXX
+    IdentityFile ~/.ssh/XXX
+
+Host *
+    Compression yes
+    AddKeysToAgent yes
+    HostkeyAlgorithms +ssh-dss
+    IdentitiesOnly yes
+    # avoid SOCKS connection errors in interactive sessions
+    #LogLevel ERROR
+    # paranoia (http://lackof.org/taggart/hacking/ssh/)
+    ForwardX11 no
+    ForwardAgent no
+    GSSAPIAuthentication no
+    GSSAPIDelegateCredentials yes
