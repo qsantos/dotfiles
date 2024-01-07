@@ -1,4 +1,8 @@
-#include "%L"
+<Multi_key> <p> <p> : "<"
+<Multi_key> <p> <g> : ">"
+<Multi_key> <p> <e> : "≤"
+<Multi_key> <g> <e> : "≥"
+
 <Multi_key> <X> <X> : "d(^.^)b"
 <Multi_key> <S> <H> : "¯\_(ツ)_/¯"
 
