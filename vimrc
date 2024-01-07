@@ -48,6 +48,7 @@ endif
 set spell
 set spelllang+=cjk
 syntax on
+au BufNewFile,BufRead *.js                           setlocal filetype=typescript syntax=javascript
 " au BufNewFile,BufRead *.ts                           setlocal syntax=typescript filetype=typescript
 " au BufNewFile,BufRead *.tsx                          setlocal syntax=typescriptreact filetype=typescriptreact
 " au BufNewFile,BufRead *.cls                          setlocal syntax=vb
