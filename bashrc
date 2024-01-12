@@ -28,12 +28,8 @@ alias ins='sudo apt install'
 alias rem='sudo apt autoremove --purge'
 
 # network
-alias wake-milo='wakeonlan -i milo.sinon.org 00:24:1d:86:5a:ce'
 alias y='yt-dlp -i -o "%(upload_date)s - %(title)s - %(id)s.%(ext)s" --no-playlist -f248+bestaudio/bestvideo+bestaudio/best --merge-output-format mkv'
 alias playlist='youtube-dl -i -o "%(playlist_index)s-%(title)s - %(id)s.%(ext)s" -f248+bestaudio/bestvideo+bestaudio/best --merge-output-format mkv'
-alias box='lftp -u freebox, hd1.freebox.fr -e "cd Disque\ dur/Video; ls"'
-alias dnsip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias webip='curl ipinfo.io'
 alias wget='wget --content-disposition'
 s() {
     ssh "$@" -t "tmux new-session -A -s main"
@@ -88,11 +84,9 @@ alias gita='gitg --all'
 alias th='tig stash'
 
 # dev
-alias pjson="python3 -m json.tool"
 alias web='python3 -m http.server --bind 127.0.0.1'
 export PYTHONSTARTUP=~/.pythonrc.py
 export CFLAGS=(-Wall -Wextra -Wpedantic -Wconversion -Wshadow -std=c99 -O3)
-alias ppath='export PYTHONPATH=$(readlink -f .):$PYTHONPATH'
 alias disas='objdump -D -b binary -mi386 -Maddr16,data16'
 alias bench='valgrind --tool=callgrind --dump-instr=yes  --collect-jumps=yes'
 alias gdb="gdb -q"
@@ -102,7 +96,6 @@ c() {
 cxx() {
     g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wvla -march=native -mtune=native -g "$@" && { time ./a.out; echo "Return status: $?"; }
 }
-alias ocaml='rlwrap -pMagenta ocaml'
 alias cb='cargo build'
 alias ct='cargo test'
 alias cr='cargo run'
@@ -127,15 +120,6 @@ alias w='watch '
 alias imginfo="exiv2 -g 'DateTime$'"
 alias imgsort="jhead -n%Y-%m-%d/%f"
 x() { unset HISTFILE; }
-
-# alias
-alias o='eval $(opam env)'
-framac_options='-wp -wp-rte -wp-timeout 1 -wp-prover tip,alt-ergo,cvc4 -warn-invalid-bool -warn-invalid-pointer -warn-left-shift-negative -warn-pointer-downcast -warn-right-shift-negative -warn-signed-downcast -warn-signed-overflow -warn-special-float non-finite -warn-unsigned-downcast -warn-unsigned-overflow'
-alias rte="frama-c $framac_options"
-alias rteg="frama-c-gui $framac_options"
-
-# make TTY pass C-S to application
-# stty -ixon
 
 # https://unix.stackexchange.com/a/304210
 tmux-x-attach() {
