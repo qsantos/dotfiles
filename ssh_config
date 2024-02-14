@@ -9,6 +9,10 @@ Host *
     AddKeysToAgent yes
     HostkeyAlgorithms +ssh-dss
     IdentitiesOnly yes
+    # Reuse and persist connections
+    ControlMaster auto
+    ControlPath ~/.ssh/sockets/%r@%h:%p
+    ControlPersist 60
     # avoid SOCKS connection errors in interactive sessions
     #LogLevel ERROR
     # paranoia (http://lackof.org/taggart/hacking/ssh/)
