@@ -7,7 +7,7 @@ PATH=~/bin:~/.local/bin:$PATH
 [[ "$(hostname)" == "milo"     ]] && HOSTCOLOR=1 # red
 [[ "$(hostname)" == "aslan"    ]] && HOSTCOLOR=3 # yellow
 [[ "$(hostname)" == "ender"    ]] && HOSTCOLOR=0 # black
-[[ "$(hostname)" == ""         ]] && HOSTCOLOR=5 # magenta
+[[ "$(hostname)" == "gandalf"  ]] && HOSTCOLOR=7 # white
 # see https://unix.stackexchange.com/a/367487 for \[ and \]
 PS1=$(printf $'\[\e[32m\]\w\[\e[3%cm\]\$\[\e[00m\] ' "$HOSTCOLOR")
 alias l='ls -alh --color=auto --group-directories-first'
