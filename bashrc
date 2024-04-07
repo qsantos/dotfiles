@@ -161,3 +161,4 @@ ulimit -d unlimited
 # alias npm='NODE_OPTIONS=--openssl-legacy-provider npm'
 
 export RUSTFLAGS="-C target-cpu=native"
+. "$HOME/.cargo/env"
