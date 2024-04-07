@@ -20,6 +20,7 @@ Plugin 'ctrlpvim/ctrlp.vim'  " fuzzy file search window
 " syntax
 Plugin 'preservim/vim-markdown'  " nice Markdown
 Plugin 'ycm-core/YouCompleteMe'  " C, C++, Python, Rust, TypeScript, file paths
+Plugin 'leafgarland/typescript-vim'  " TypeScript
 " makes everything slow
 " Plugin 'dense-analysis/ale'  " eslint
 
