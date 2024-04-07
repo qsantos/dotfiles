@@ -2,14 +2,22 @@ export LANG=C.UTF-8
 export LANGUAGE=C.UTF-8
 PATH=~/bin:~/.local/bin:$PATH
 
-# colors
-[[ "$(hostname)" == ""         ]] && HOSTCOLOR=6 # cyan
-[[ "$(hostname)" == "milo"     ]] && HOSTCOLOR=1 # red
-[[ "$(hostname)" == "aslan"    ]] && HOSTCOLOR=3 # yellow
-[[ "$(hostname)" == "ender"    ]] && HOSTCOLOR=0 # black
-[[ "$(hostname)" == "gandalf"  ]] && HOSTCOLOR=7 # white
+# Prompt color (see https://en.wikipedia.org/wiki/ANSI_escape_code#SGR)
+# 30  black
+# 31  red
+# 32  green
+# 33  yellow
+# 34  blue
+# 35  purple
+# 36  cyan
+# 37  white
+[[ "$(hostname)" == "milo"     ]] && HOSTCOLOR=31
+[[ "$(hostname)" == "aslan"    ]] && HOSTCOLOR=33
+[[ "$(hostname)" == "ender"    ]] && HOSTCOLOR=30
+[[ "$(hostname)" == "gandalf"  ]] && HOSTCOLOR=37
 # see https://unix.stackexchange.com/a/367487 for \[ and \]
-PS1=$(printf $'\[\e[32m\]\w\[\e[3%cm\]\$\[\e[00m\] ' "$HOSTCOLOR")
+PS1=$(printf $'\[\e[32m\]\w\[\e[%dm\]\$\[\e[00m\] ' "$HOSTCOLOR")
+
 alias l='ls -alh --color=auto --group-directories-first'
 alias ls='ls --color=auto --group-directories-first'
 alias mv='mv -i'

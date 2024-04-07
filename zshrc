@@ -67,7 +67,6 @@ compdef s=ssh
 compdef cfg-sync=ssh
 compdef tmux-ssh=ssh
 
-[[ "$(hostname)" == ""         ]] && HOSTCOLOR="cyan"
 [[ "$(hostname)" == "milo"     ]] && HOSTCOLOR="red"
 [[ "$(hostname)" == "aslan"    ]] && HOSTCOLOR="yellow"
 [[ "$(hostname)" == "ender"    ]] && HOSTCOLOR="black"
