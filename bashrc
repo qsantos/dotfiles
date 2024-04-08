@@ -15,6 +15,7 @@ PATH=~/bin:~/.local/bin:$PATH
 [[ "$(hostname)" == "aslan"    ]] && HOSTCOLOR=33
 [[ "$(hostname)" == "ender"    ]] && HOSTCOLOR=30
 [[ "$(hostname)" == "gandalf"  ]] && HOSTCOLOR=37
+[[ "$(hostname)" == "frodo"    ]] && HOSTCOLOR=31
 # see https://unix.stackexchange.com/a/367487 for \[ and \]
 PS1=$(printf $'\[\e[32m\]\w\[\e[%dm\]\$\[\e[00m\] ' "$HOSTCOLOR")
 

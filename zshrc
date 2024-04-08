@@ -71,6 +71,7 @@ compdef tmux-ssh=ssh
 [[ "$(hostname)" == "aslan"    ]] && HOSTCOLOR="yellow"
 [[ "$(hostname)" == "ender"    ]] && HOSTCOLOR="black"
 [[ "$(hostname)" == "gandalf"  ]] && HOSTCOLOR="white"
+[[ "$(hostname)" == "frodo"    ]] && HOSTCOLOR="red"
 PS1="%F{green}%~%F{$HOSTCOLOR}%#%F{white} "
 
 # Allow Ctrl-z to toggle between suspend and resume
