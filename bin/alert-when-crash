@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+while true; do
+    "$@" && break
+    notify-send -t 0 "Crashed" "$*"
+    sleep 1
+done
