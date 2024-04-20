@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -e
+for i in "$@"
+do
+    (cd "$i" 2>/dev/null && find -type f -print0 | xargs -0 md5sum | sort -k34 | md5sum | sed "s!-!$i\/!g") || md5sum "$i"
+done
