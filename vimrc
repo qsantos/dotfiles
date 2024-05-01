@@ -92,6 +92,27 @@ set completeopt+=longest  " put longest common part of the matches
 " ale
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+let b:ale_linters = 'all'
+" integrate typos in ale
+function! TyposCallback(buffer, lines) abort
+    " Matches e.g. "-:43:12: `Reseting` -> `Resetting`"
+    let l:pattern = '\v^-:(\d+):(\d+): `([^`]+)` -\> `([^`]*)`$'
+    let l:output = []
+    for l:match in ale#util#GetMatches(a:lines, l:pattern)
+        call add(l:output, {
+        \   'lnum': l:match[1] + 0,
+        \   'col': l:match[2] + 0,
+        \   'end_col': l:match[2] + len(l:match[3]) - 1,
+        \   'text': l:match[4],
+        \   'type': 'W',
+        \})
+    endfor
+    return l:output
+endfunction
+let s:typos = { 'name': 'typos', 'executable': 'typos', 'command': 'typos --format=brief -', 'callback': 'TyposCallback' }
+for lang in ["ansible", "c", "cpp", "css", "dockerfile", "gitcommit", "html", "javascript", "json", "json5", "jsonc", "jsonnet", "markdown", "python", "rust", "sh", "tex", "text", "typescript", "vim", "xhtml", "xml", "yaml"]
+    call ale#linter#Define(lang, s:typos)
+endfor
 
 " indent
 filetype plugin indent on
