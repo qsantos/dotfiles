@@ -23,17 +23,3 @@ fixup = commit --patch --fixup
 # ri = rebase --autosquash --autostash -i
 # st = status --short --branch
 # up = remote update
-[diff]
-tool = vimdiff
-
-[merge]
-tool = vimdiff
-conflictstyle = diff3
-[core]
-	excludesfile = ~/.gitignore
-[pull]
-	ff = only
-# [blame]
-# 	ignoreRevsFile = ignorerevs
-[init]
-	defaultBranch = master
