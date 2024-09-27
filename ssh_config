@@ -6,7 +6,6 @@ Host XXX
 Host *
     Compression yes
     AddKeysToAgent yes
-    HostkeyAlgorithms +ssh-dss
     IdentitiesOnly yes
     IdentityFile ~/.ssh/id_ed25519
     # Reuse and persist connections
