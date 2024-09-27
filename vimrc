@@ -173,7 +173,7 @@ function! NextError()
 endfunction
 
 " search
-set hlsearch incsearch "ignorecase smartcase
+set hlsearch incsearch ignorecase smartcase
 map <Backspace> :noh<CR>
 
 " folding
