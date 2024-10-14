@@ -4,6 +4,9 @@ setopt auto_pushd
 #setopt no_auto_remove_slash
 #unsetopt correct glob
 
+# Interpret comments in shell, like in bash
+setopt interactivecomments
+
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
