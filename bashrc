@@ -162,7 +162,6 @@ ulimit -d unlimited
 # workaround for https://github.com/webpack/webpack/issues/14532
 # alias npm='NODE_OPTIONS=--openssl-legacy-provider npm'
 
-export RUSTFLAGS="-C target-cpu=native"
 if [ -e "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
