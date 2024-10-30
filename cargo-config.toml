@@ -1,5 +1,9 @@
-[build]
-rustflags = "-C target-cpu=native"
+# To make sure that rustflags can be merge with inner config files, use this
+# section, and use an array, not a string for the value of rustflags
+[target.'cfg(all())']
+linker = "clang"
+rustflags = ["-C", "target-cpu=native", "-C", "link-arg=-fuse-ld=/usr/bin/mold"]
 
 [profile.release]
+# without this, using mold gains nothing over using lld
 lto = "thin"
