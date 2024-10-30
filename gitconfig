@@ -4,6 +4,7 @@ email = qsantos@qsantos.fr
 
 [merge]
 conflictstyle = diff3
+tool = vimdiff
 
 [alias]
 fixup = commit --patch --fixup
