@@ -108,6 +108,7 @@ cxx() {
 }
 alias cb='cargo build'
 alias ct='cargo test'
+alias ctd='cargo test --doc'
 alias cr='cargo run'
 alias ce='cargo run --example'
 alias cbr='cargo build --release'
