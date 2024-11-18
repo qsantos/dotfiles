@@ -23,6 +23,7 @@ Plugin 'ycm-core/YouCompleteMe'  " C, C++, Python, Rust, TypeScript, file paths
 Plugin 'leafgarland/typescript-vim'  " TypeScript
 " Only useful for Python
 " Plugin 'dense-analysis/ale'  " linters
+Plugin 'github/copilot.vim'  " Smart completion
 
 call vundle#end()
 
