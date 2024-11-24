@@ -116,7 +116,7 @@ alias ctr='cargo test --release'
 alias crr='cargo run --release'
 alias cer='cargo run --release --example'
 alias cf='cargo fmt'
-alias ck='cargo check'
+alias ck='cargo check --tests'
 alias cc='cargo clippy --tests'
 alias co='cargo doc'
 
