@@ -73,6 +73,9 @@ let g:pandoc#syntax#codeblocks#embeds#langs = ['json=javascript', 'ruby', 'pytho
 " <http://www.alecjacobson.com/weblog/?p=1858>
 let g:tex_flavor = "latex"
 
+" Fix broken highlighting in large files; see https://vi.stackexchange.com/a/20990
+au BufNewFile,BufRead * syntax sync fromstart
+
 " YouCompleteMe
 let g:ycm_enable_inlay_hints = 1
 nnoremap <F1> :%s/\<<C-r><C-w>\>/<C-r><C-w>
