@@ -65,7 +65,7 @@ au BufNewFile,BufRead *.js                           setlocal filetype=typescrip
 " au BufNewFile,BufRead *.ml,*.mli                     setlocal sw=2 ts=2
 " au BufNewFile,BufRead *.sh                           setlocal sw=2 ts=2
 " au BufNewFile,BufRead *.rst                          setlocal sw=2 ts=2
-" au Filetype gitcommit                                setlocal colorcolumn=51 textwidth=72
+au Filetype gitcommit                                setlocal colorcolumn=51 textwidth=72
 " Markdown code blocks <https://www.reddit.com/r/vim/comments/2x5yav/markdown_with_fenced_code_blocks_is_great/>
 let g:markdown_fenced_languages = ['c', 'css', 'javascript', 'js=javascript', 'json=javascript', 'html', 'python']
 let g:pandoc#syntax#codeblocks#embeds#langs = ['json=javascript', 'ruby', 'python', 'bash=sh']
