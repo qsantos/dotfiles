@@ -25,6 +25,8 @@
 <Multi_key> <O> <O> : "Ɔ"
 <Multi_key> <O> <o> : "ɔ"
 
+<Multi_key> <n> <o> : "№"
+
 <Multi_key> <T> <E> : "∃"
 <Multi_key> <F> <A> : "∀"
 <Multi_key> <S> <S> : "∑"
