@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+DST=~
+SRC="$1"
+NEW_PATH="$DST/${SRC##*/}"
+
+mv "$SRC" "$DST"
+
+# Add contents of screenshot to clipboard
+xclip -selection "clipboard" -t "image/png" "$NEW_PATH"
+
+# Add path to file to clipboard
+# echo "file://$NEW_PATH" | xclip -selection "clipboard" -t "text/uri-list"
