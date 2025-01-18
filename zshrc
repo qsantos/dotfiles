@@ -4,6 +4,9 @@ setopt auto_pushd
 #setopt no_auto_remove_slash
 #unsetopt correct glob
 
+# Disable failing when a glob doesn’t match anything
+unsetopt nomatch
+
 # Interpret comments in shell, like in bash
 setopt interactivecomments
 
