@@ -150,7 +150,7 @@ inoremap KJ <Esc>
 map <C-H> :bprev!<CR>
 map <C-L> :bnext!<CR>
 " close buffer but do not close split window
-nmap ,d :b#<bar>bd#<bar>b<CR>
+nmap ,d :bn<bar>bd#<CR>
 " insert date/time for DONE list
 nnoremap <F5> ggO<Esc>"=strftime("%F")<CR>Po<Esc>o<Esc>
 inoremap <F5> <Esc>ggO<Esc>"=strftime("%F")<CR>Po<Esc>o<Esc>
