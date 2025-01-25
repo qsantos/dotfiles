@@ -49,6 +49,8 @@ endif
 " syntax highlighting
 set spell
 set spelllang+=cjk
+" don’t count e.g. “camelCase” as a spelling error
+set spelloptions=camel
 syntax on
 au BufNewFile,BufRead *.js                           setlocal filetype=typescript syntax=javascript
 " au BufNewFile,BufRead *.ts                           setlocal syntax=typescript filetype=typescript
