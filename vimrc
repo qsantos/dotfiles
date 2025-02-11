@@ -122,6 +122,9 @@ inoremap KJ <Esc>
 " navigate buffers
 map <C-H> :bprev!<CR>
 map <C-L> :bnext!<CR>
+" navigate tabs
+map <C-G> :tabprev<CR>
+map <C-M> :tabnext<CR>
 " close buffer but do not close split window
 nmap ,d :bn<bar>bd#<CR>
 " insert date/time for DONE list
