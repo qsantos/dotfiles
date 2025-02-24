@@ -50,22 +50,8 @@ set spelllang+=cjk
 " don’t count e.g. “camelCase” as a spelling error
 set spelloptions=camel
 syntax on
-au BufNewFile,BufRead *.js                           setlocal filetype=typescript syntax=javascript
-" au BufNewFile,BufRead *.ts                           setlocal syntax=typescript filetype=typescript
-" au BufNewFile,BufRead *.tsx                          setlocal syntax=typescriptreact filetype=typescriptreact
-" au BufNewFile,BufRead *.cls                          setlocal syntax=vb
-" au BufNewFile,BufRead *.md                           setlocal syntax=markdown.pandoc
-" au BufNewFile,BufRead *.v                            setlocal syntax=coq
-" au BufNewFile,BufRead *.smt2                         setlocal syntax=smt2
-" au BufNewFile,BufRead *.h,*.cl                       setlocal syntax=c filetype=c
-" au BufNewFile,BufRead *.tex                          setlocal syntax=tex
-" au BufNewFile,BufRead *.pyi                          setlocal syntax=python
-" au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setlocal syntax=glsl
-" au BufNewFile,BufRead *.yaml,*.yml                   setlocal sw=2 ts=2
-" au BufNewFile,BufRead *.ml,*.mli                     setlocal sw=2 ts=2
-" au BufNewFile,BufRead *.sh                           setlocal sw=2 ts=2
-" au BufNewFile,BufRead *.rst                          setlocal sw=2 ts=2
-au Filetype gitcommit                                setlocal colorcolumn=51 textwidth=72
+au BufNewFile,BufRead *.js setlocal filetype=typescript syntax=javascript
+au Filetype gitcommit      setlocal colorcolumn=51 textwidth=72
 " Markdown code blocks <https://www.reddit.com/r/vim/comments/2x5yav/markdown_with_fenced_code_blocks_is_great/>
 let g:markdown_fenced_languages = ['c', 'css', 'javascript', 'js=javascript', 'json=javascript', 'html', 'python']
 let g:pandoc#syntax#codeblocks#embeds#langs = ['json=javascript', 'ruby', 'python', 'bash=sh']
