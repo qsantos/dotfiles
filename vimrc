@@ -30,9 +30,13 @@ let mapleader = " "
 " appearance
 set linebreak showbreak=\\ colorcolumn=100 number norelativenumber background=dark
 set nowrap
+" Show line endings
 set showbreak=↪
+" Show non-breaking spaces, tabs, trailing spaces and line wraps
 set list listchars=nbsp:~,tab:>-,eol:↲,trail:·,extends:›,precedes:‹
+" Update the terminal title to the current file name
 set title
+" Make that work through tmux as well
 if exists('$TMUX')
     autocmd BufEnter * call system("tmux rename-window '" . expand("%:t") . "'")
     autocmd VimLeave * call system("tmux setw automatic-rename")
@@ -44,13 +48,17 @@ endif
 " let g:rustfmt_fail_silently = 0
 " in any case, it just does not work https://github.com/rust-lang/rust.vim/issues/192
 
-" syntax highlighting
+" Syntax highlighting
+" Enable spell checking
 set spell
+" Enable spell checking for CJK languages in addition to the current one
 set spelllang+=cjk
-" don’t count e.g. “camelCase” as a spelling error
+" Don’t count e.g. “camelCase” as a spelling error
 set spelloptions=camel
 syntax on
+" Enable TypeScript linting on JavaScript files
 au BufNewFile,BufRead *.js setlocal filetype=typescript syntax=javascript
+" Use the recommended commit title and text wrapping for git commit messages
 au Filetype gitcommit      setlocal colorcolumn=51 textwidth=72
 " Markdown code blocks <https://www.reddit.com/r/vim/comments/2x5yav/markdown_with_fenced_code_blocks_is_great/>
 let g:markdown_fenced_languages = ['c', 'css', 'javascript', 'js=javascript', 'json=javascript', 'html', 'python']
@@ -64,16 +72,25 @@ au BufNewFile,BufRead * syntax sync fromstart
 
 " YouCompleteMe
 let g:ycm_enable_inlay_hints = 1
+" Dumb search-and-replace for the word under the cursor
 nnoremap <F1> :%s/\<<C-r><C-w>\>/<C-r><C-w>
+" Smart search-and-replace for the word under the cursor
 nnoremap <F2> :YcmCompleter RefactorRename<Space>
+" Fix the error under the cursor
 nnoremap <F3> :YcmCompleter FixIt<CR>
+" Go to the definition of the word under the cursor
 map ù :YcmCompleter GoTo<CR>
+" Go to the definition of the type of the word under the cursor
 map gt :YcmCompleter GoToType<CR>
+" Display the type of the word under the cursor
 map g? :YcmCompleter GetType<CR>
+" Go back to the previous location
 map ! <C-O>
 " nnoremap ù <C-]>
 " nnoremap ! <C-t>
+" Display the documentation of the word under the cursor
 map <F9> :YcmCompleter GetDoc<CR>
+" Probably fixes some weird behaviors with YCM
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_always_populate_location_list = 1
 " let g:ycm_open_loclist_on_ycm_diags = 1 " no effect?
@@ -89,26 +106,31 @@ let g:pyindent_continue = '&sw'
 set expandtab shiftwidth=4 tabstop=4 softtabstop=4 autoindent  "indentexpr=
 
 " behavior
-set mouse=a clipboard=unnamedplus
+set mouse=a " Allow using the mouse to move the cursor, scroll, select visual mode, etc.
+set clipboard=unnamedplus " Integrate with the normal clipboard
 set modeline  " detect /* vim: noai:ts=4:sw=4 */
 set matchpairs+=<:>  " match < and > as well
 set nojoinspaces  " single space when joining sentences
-set undofile undodir=$HOME/.vim/undo  " undo
+set undofile undodir=$HOME/.vim/undo  " persistent undo history
 set nobackup nowritebackup noswapfile dir=/tmp  " no temporary files
 set wildmode=longest,list,full  " complete paths like Bash
 " breaks VS Code
 vnoremap p pgvy " keep copy buffer when pasting over in visual mode
 
 " key maps
-" easy escape
+" Exit insert mode by typing “kj” instead of hitting Escape
+" Note: I used “jk” at first as I saw recommended online, by I immediately had
+" to type “Dijkstra” many times. I never encountered an issue with “kj” over
+" many years.
 inoremap kj <Esc>
 inoremap Kj <Esc>
 inoremap kJ <Esc>
 inoremap KJ <Esc>
-" navigate buffers
+" navigate buffers (they show as tabs in Airline, but they are not _Vim_ tabs)
 map <C-H> :bprev!<CR>
 map <C-L> :bnext!<CR>
 " navigate tabs
+" Vim tabs are actually somewhat weird, you probably don’t want to use that
 map <C-G> :tabprev<CR>
 map <C-M> :tabnext<CR>
 " close buffer but do not close split window
