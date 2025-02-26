@@ -3,10 +3,58 @@ name = Quentin Santos
 email = qsantos@qsantos.fr
 
 [merge]
-conflictstyle = diff3
+conflictstyle = zdiff3
 tool = vimdiff
 
 [alias]
 fixup = commit --patch --fixup
+
 [init]
-	defaultBranch = master
+defaultBranch = master
+
+[tag]
+# Use version sort when listing tags
+sort = version:refname
+
+[diff]
+# Better diff than myers
+algorithm = histogram
+# Show moved lines in different colors than additions/deletions
+colorMoved = plain
+# Replace a/ b/ in diffs by i/ w/ c/
+mnemonicPrefix = true
+# Follow renamed files in diffs as well
+renames = true
+# Automatically rebase the local branch on top of the remote branch
+# I have not needed it often, but it probably does not hurt.
+rebase = true
+
+[push]
+# Automatically git push -o REMOTE BRANCH when BRANCH does not yet exist on REMOTE
+autoSetupRemote = true
+# Automatically push tags
+followTags = true
+
+[fetch]
+# Automatically git remote prune REMOTE when fetching
+prune = true
+pruneTags = true
+# This does not seem like a good idea
+# all = true
+
+[commit]
+# Show diff when writing commit message
+verbose = true
+
+[rerere]
+# Reuse previous conflict resolutions
+enabled = true
+autoupdate = true
+
+[rebase]
+autoSquash = true
+# Automatically stash before rebasing (and unstash after)
+autoStash = true
+# Automatically update the other affected refs when rebasing a branch
+# NOTE: This sounds nice, but do I always want that?
+updateRefs = true
