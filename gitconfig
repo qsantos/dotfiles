@@ -9,6 +9,8 @@ tool = vimdiff
 
 [alias]
 fixup = commit --patch --fixup
+# from https://news.ycombinator.com/item?id=43171509
+out = "log @{u}.."
 
 [init]
 defaultBranch = master
