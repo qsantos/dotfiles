@@ -61,3 +61,5 @@ autoStash = true
 # Automatically update the other affected refs when rebasing a branch
 # NOTE: This sounds nice, but do I always want that?
 updateRefs = true
+[branch]
+	sort = -committerdate
