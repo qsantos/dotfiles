@@ -1,3 +1,4 @@
+# vim: syntax=xcompose
 <Multi_key> <p> <p> : "<"
 <Multi_key> <p> <g> : ">"
 <Multi_key> <p> <e> : "≤"
