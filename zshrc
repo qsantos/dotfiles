@@ -22,10 +22,6 @@ SAVEHIST=100000000
 HISTFILE=~/.zsh_history
 REPORTTIME=1
 setopt extended_history # logs the start and elapsed time
-#setopt inc_append_history
-#setopt hist_ignore_dups
-#setopt hist_ignore_all_dups
-#setopt hist_find_no_dups
 
 # Use modern completion system
 autoload -Uz compinit
