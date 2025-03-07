@@ -61,5 +61,27 @@ autoStash = true
 # Automatically update the other affected refs when rebasing a branch
 # NOTE: This sounds nice, but do I always want that?
 updateRefs = true
+
 [branch]
-	sort = -committerdate
+sort = -committerdate
+
+# Config from diff-so-fancy
+[core]
+pager = diff-so-fancy | less --tabs=4 -RF
+[interactive]
+diffFilter = diff-so-fancy --patch
+[color]
+ui = true
+[color "diff-highlight"]
+oldNormal = red bold
+oldHighlight = red bold 52
+newNormal = green bold
+newHighlight = green bold 22
+[color "diff"]
+meta = 11
+frag = magenta bold
+func = 146 bold
+commit = yellow bold
+old = red bold
+new = green bold
+whitespace = red reverse
