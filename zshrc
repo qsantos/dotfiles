@@ -23,6 +23,15 @@ HISTFILE=~/.zsh_history
 REPORTTIME=1
 setopt extended_history # logs the start and elapsed time
 
+# Constantly-updated cock in right prompt; freezes when running command
+# Based on https://stackoverflow.com/a/17915260/4457767
+# From http://www.zsh.org/mla/users/2007/msg00944.html
+RPROMPT='[%D{%Y-%m-%d} %D{%H:%M:%S}]'
+TMOUT=1
+TRAPALRM() {
+    zle reset-prompt
+}
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
