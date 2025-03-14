@@ -135,11 +135,11 @@ map <C-G> :tabprev<CR>
 map <C-M> :tabnext<CR>
 " close buffer but do not close split window
 nmap ,d :bn<bar>bd#<CR>
-" insert date/time for DONE list
-nnoremap <F5> ggO<Esc>"=strftime("%F")<CR>Po<Esc>o<Esc>
-inoremap <F5> <Esc>ggO<Esc>"=strftime("%F")<CR>Po<Esc>o<Esc>
-nnoremap <F6> ggjo-<Space><Esc>"=strftime("%T")<CR>pA<Space>
-inoremap <F6> <Esc>ggjo-<Space><Esc>"=strftime("%T")<CR>pA<Space>
+" insert date/time for work log
+nnoremap <F5> G$"=strftime("\n\n# %F\n\n- %T ")<CR>pGA
+inoremap <F5> <Esc>G$"=strftime("\n\n# %F\n\n- %T ")<CR>pGA
+nnoremap <F6> G$"=strftime("\n- %T ")<CR>pGA
+inoremap <F6> <Esc>G$"=strftime("\n- %T ")<CR>pGA
 nnoremap <F8> :<C-u>call NextError()<CR>
 
 function! NextError()
