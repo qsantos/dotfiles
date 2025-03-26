@@ -119,3 +119,5 @@ bindkey "^Z" Resume
 
 # compatibility with bash completion
 autoload bashcompinit && bashcompinit
+
+eval "$(direnv hook zsh)"
