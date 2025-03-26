@@ -23,14 +23,9 @@ HISTFILE=~/.zsh_history
 REPORTTIME=1
 setopt extended_history # logs the start and elapsed time
 
-# Constantly-updated cock in right prompt; freezes when running command
-# Based on https://stackoverflow.com/a/17915260/4457767
-# From http://www.zsh.org/mla/users/2007/msg00944.html
-RPROMPT='[%D{%Y-%m-%d} %D{%H:%M:%S}]'
-TMOUT=1
-TRAPALRM() {
-    zle reset-prompt
-}
+# From https://unix.stackexchange.com/a/598820/532252
+print-time() print -P '%F{yellow}%D{%F %T.%2.%z}%f'
+preexec_functions+=(print-time)
 
 # From https://superuser.com/a/847411
 REPORTTIME_TOTAL=1
