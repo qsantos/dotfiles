@@ -34,7 +34,7 @@ REPORTTIME_TOTAL=1
 cmd_execution_time() {
   local stop=$((`date "+%s + %N / 1_000_000_000.0"`))
   let local "elapsed = ${stop} - ${cmd_start_time}"
-  (( $elapsed > $REPORTTIME_TOTAL )) && print -P "%F{yellow}Command took ${elapsed}s%f"
+  (( $elapsed > $REPORTTIME_TOTAL )) && print -P "%F{yellow}%D{%F %T.%2.%z}; elapsed: ${elapsed}s%f"
   unset cmd_start_time
 }
 preexec() {
