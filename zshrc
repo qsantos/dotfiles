@@ -31,13 +31,13 @@ preexec_functions+=(print-time)
 # Show time time when a command completed, and the elapsed wall-clock time
 # From https://superuser.com/a/847411
 cmd_execution_time() {
-  local stop=$((`date "+%s + %N / 1_000_000_000.0"`))
-  let local "elapsed = ${stop} - ${cmd_start_time}"
-  print -P "%F{yellow}%D{%F %T.%2.%z}; elapsed: ${elapsed}s%f"
+  local stop=$(date +%s%9N)
+  let local elapsed=$((($stop - $cmd_start_time) / 1e9))
+  print -P "%F{yellow}%D{%F %T.%2.%z} (${elapsed} elapsed)%f"
   unset cmd_start_time
 }
 preexec() {
-  cmd_start_time=$((`date "+%s + %N / 1.0e9"`))
+  cmd_start_time=$(date +%s%9N)
 }
 precmd() {
   if (($+cmd_start_time)); then
