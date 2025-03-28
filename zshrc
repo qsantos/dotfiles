@@ -33,6 +33,7 @@ preexec_functions+=(print-time)
 cmd_execution_time() {
   local stop=$(date +%s%9N)
   let local elapsed=$((($stop - $cmd_start_time) / 1e9))
+  local elapsed=$(printf "%.3fs" $elapsed)
   print -P "%F{yellow}%D{%F %T.%2.%z} (${elapsed} elapsed)%f"
   unset cmd_start_time
 }
