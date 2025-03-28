@@ -30,11 +30,10 @@ preexec_functions+=(print-time)
 
 # Show time time when a command completed, and the elapsed wall-clock time
 # From https://superuser.com/a/847411
-REPORTTIME_TOTAL=1
 cmd_execution_time() {
   local stop=$((`date "+%s + %N / 1_000_000_000.0"`))
   let local "elapsed = ${stop} - ${cmd_start_time}"
-  (( $elapsed > $REPORTTIME_TOTAL )) && print -P "%F{yellow}%D{%F %T.%2.%z}; elapsed: ${elapsed}s%f"
+  print -P "%F{yellow}%D{%F %T.%2.%z}; elapsed: ${elapsed}s%f"
   unset cmd_start_time
 }
 preexec() {
