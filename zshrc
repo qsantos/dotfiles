@@ -23,25 +23,23 @@ HISTFILE=~/.zsh_history
 REPORTTIME=1
 setopt extended_history # logs the start and elapsed time
 
+# Show the time when a command was run
 # From https://unix.stackexchange.com/a/598820/532252
 print-time() print -P '%F{yellow}%D{%F %T.%2.%z}%f'
 preexec_functions+=(print-time)
 
+# Show time time when a command completed, and the elapsed wall-clock time
 # From https://superuser.com/a/847411
 REPORTTIME_TOTAL=1
-# Displays the execution time of the last command if set threshold was exceeded
 cmd_execution_time() {
   local stop=$((`date "+%s + %N / 1_000_000_000.0"`))
   let local "elapsed = ${stop} - ${cmd_start_time}"
   (( $elapsed > $REPORTTIME_TOTAL )) && print -P "%F{yellow}Command took ${elapsed}s%f"
-  # Fix bug where hitting Ctrl+C displays the time since the last command was run
   unset cmd_start_time
 }
-# Get the start time of the command
 preexec() {
   cmd_start_time=$((`date "+%s + %N / 1.0e9"`))
 }
-# Output total execution
 precmd() {
   if (($+cmd_start_time)); then
     cmd_execution_time
