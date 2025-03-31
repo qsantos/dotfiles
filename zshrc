@@ -26,7 +26,7 @@ setopt extended_history # logs the start and elapsed time
 # Show the time when a command was run
 # From https://unix.stackexchange.com/a/598820/532252
 print-time() print -P '%F{yellow}%D{%F %T.%2.%z}%f'
-preexec_functions+=(print-time)
+preexec_functions=(print-time)
 
 # Show time time when a command completed, and the elapsed wall-clock time
 # From https://superuser.com/a/847411
