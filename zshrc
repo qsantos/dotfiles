@@ -41,6 +41,8 @@ preexec() {
   cmd_start_time=$(date +%s%9N)
 }
 precmd() {
+  # For unclear reasons, the line is initially filled with spaces; this clears them
+  echo -ne "\e[2K"
   if (($+cmd_start_time)); then
     cmd_execution_time
   fi
