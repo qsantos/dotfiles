@@ -18,4 +18,4 @@ Host *
     ForwardX11 no
     ForwardAgent no
     GSSAPIAuthentication no
-    GSSAPIDelegateCredentials yes
+    GSSAPIDelegateCredentials no
