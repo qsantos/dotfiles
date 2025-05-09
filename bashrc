@@ -101,7 +101,7 @@ alias disas='objdump -D -b binary -mi386 -Maddr16,data16'
 alias bench='valgrind --tool=callgrind --dump-instr=yes  --collect-jumps=yes'
 alias gdb="gdb -q"
 c() {
-    gcc -O3 -std=c99 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wvla -march=native -mtune=native -g "$@" && { time ./a.out; echo "Return status: $?"; }
+    gcc -O3 -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wvla -march=native -mtune=native -g "$@" && { time ./a.out; echo "Return status: $?"; }
 }
 cxx() {
     g++ -O3 -std=c++17 -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wvla -march=native -mtune=native -g "$@" && { time ./a.out; echo "Return status: $?"; }
