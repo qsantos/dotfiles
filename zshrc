@@ -1,7 +1,7 @@
 setopt histignorealldups #sharehistory
 setopt auto_pushd
 #setopt autocd
-#setopt no_auto_remove_slash
+setopt no_auto_remove_slash
 #unsetopt correct glob
 
 # Disable failing when a glob doesn’t match anything
