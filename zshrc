@@ -10,12 +10,12 @@ unsetopt nomatch
 # Interpret comments in shell, like in bash
 setopt interactivecomments
 
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
+
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
-
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
 
 HISTSIZE=100000000
 SAVEHIST=100000000
