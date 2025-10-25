@@ -21,7 +21,6 @@ Plugin 'ctrlpvim/ctrlp.vim'  " fuzzy file search window
 Plugin 'preservim/vim-markdown'  " nice Markdown
 Plugin 'ycm-core/YouCompleteMe'  " C, C++, Python, Rust, TypeScript, file paths
 Plugin 'leafgarland/typescript-vim'  " TypeScript
-Plugin 'github/copilot.vim'  " Smart completion
 
 call vundle#end()
 
