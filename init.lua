@@ -172,6 +172,8 @@ vim.opt.linebreak = true
 vim.opt.showbreak = "↪"
 vim.opt.colorcolumn = "100"
 
+vim.opt.clipboard = "unnamedplus"
+
 -- ===== Title & optional tmux rename =====
 vim.opt.title = true
 if os.getenv("TMUX") then
