@@ -223,6 +223,8 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   command = "syntax sync fromstart",
 })
 
+vim.opt.number = true
+
 -- ===== Indent settings =====
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
