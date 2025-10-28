@@ -39,6 +39,12 @@ require("lazy").setup({
   { "rafamadriz/friendly-snippets" },
 })
 
+require("treesitter-context").setup({
+  mode = "topline",
+  separator = "-",
+})
+vim.o.scrolloff = 4
+
 -- ===== Bufferline (Airline tabline replacement) =====
 require("bufferline").setup({
   options = {
