@@ -6,8 +6,8 @@
 <Multi_key> <equal> <asciitilde> : "≈"
 <Multi_key> <asciitilde> <equal> : "≈"
 
-<Multi_key> <X> <X> : "d(^.^)b"
-<Multi_key> <S> <H> : "¯\_(ツ)_/¯"
+<Multi_key> <x> <x> : "d(^.^)b"
+<Multi_key> <y> <y> : "¯\\_(ツ)_/¯"
 
 <Multi_key> <less> <less> : "≪"
 <Multi_key> <greater> <greater> : "≫"
