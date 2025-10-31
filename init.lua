@@ -339,7 +339,7 @@ vim.diagnostic.config({
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { silent = true })
 
 -- unimpaired equivalent
-for _, m in ipairs({ 'n','o','x', 's', 'c', 'l' }) do
+for _, m in ipairs({ 'n','o','x' }) do
   vim.keymap.set(m, '(', '[', { noremap=true })
   vim.keymap.set(m, ')', ']', { noremap=true })
 end
