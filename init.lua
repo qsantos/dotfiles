@@ -121,9 +121,6 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
--- Fugitive
-map('n', 'gb', '<cmd>Git blame<CR>', opts)
-
 -- ===== “NextError” helper (location list/quickfix) =====
 local function NextError()
   local ok = pcall(vim.cmd, 'lnext')
@@ -343,3 +340,6 @@ for _, m in ipairs({ 'n','o','x' }) do
   vim.keymap.set(m, '(', '[', { noremap=true })
   vim.keymap.set(m, ')', ']', { noremap=true })
 end
+
+-- Fugitive
+map('n', 'gb', '<cmd>Git blame<CR>', opts)
