@@ -151,9 +151,10 @@ map('n', '<F3>', vim.lsp.buf.code_action, opts)            -- YCM: FixIt
 map('n', '<F9>', vim.lsp.buf.hover, opts)                  -- YCM: GetDoc
 
 -- Go to definition/type, show type-ish
-map('n', 'ù',  vim.lsp.buf.definition, opts)               -- YCM: GoTo
-map('n', 'gt', vim.lsp.buf.type_definition, opts)          -- YCM: GoToType
-map('n', 'g?', function() vim.lsp.buf.hover() end, opts)   -- YCM: GetType-ish
+map('n', 'ù',  vim.lsp.buf.definition, opts)
+map('n', 'gt', vim.lsp.buf.type_definition, opts)
+map('n', 'g?', vim.lsp.buf.hover, opts)
+map('n', 'gi', vim.lsp.buf.incoming_calls, opts)
 
 -- Jump back
 map('n', '!', '<C-o>', opts)
