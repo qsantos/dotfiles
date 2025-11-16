@@ -123,6 +123,7 @@ alias co='cargo doc'
 
 # misc
 export EDITOR='vim'
+alias n='nvim'
 alias svi='sudo -E vim'
 alias phone='adb shell -t bash'
 alias rm='rm --one-file-system'
