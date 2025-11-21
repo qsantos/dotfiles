@@ -55,8 +55,24 @@ require("bufferline").setup({
     show_buffer_close_icons = false,
     show_close_icon = false,
     always_show_bufferline = true,
+    -- show full relative paths, not just file name
+    max_name_length = 999,
+    max_prefix_length = 999,
+    truncate_names = false,
+    name_formatter = function(buf)  -- buf contains:
+        return vim.fn.fnamemodify(buf.path, ":.")
+    end,
   },
 })
+
+require("lualine").setup({
+  sections = {
+    lualine_c = {
+      { "filename", path = 1 },  -- 0 = basename, 1 = relative, 2 = absolute
+    },
+  },
+})
+
 -- Keymaps
 vim.keymap.set('n', '<C-H>', '<cmd>BufferLineCyclePrev<CR>', { silent = true })
 vim.keymap.set('n', '<C-L>', '<cmd>BufferLineCycleNext<CR>', { silent = true })
