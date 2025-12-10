@@ -149,7 +149,7 @@ vim.keymap.set('n', 'g?', vim.lsp.buf.hover)
 vim.keymap.set('n', 'gi', vim.lsp.buf.incoming_calls)
 vim.keymap.set('n', 'gj', vim.lsp.buf.code_action)
 -- Jump back
-vim.keymap.set('n', '!', '<C-o>')
+vim.keymap.set('n', '!', '<C-t>')
 
 -- ===== Spelling =====
 vim.opt.spell = true
