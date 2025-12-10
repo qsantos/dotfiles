@@ -92,37 +92,38 @@ vim.cmd.colorscheme("tokyonight")
 -- Leader
 vim.g.mapleader = ' '
 
-local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- ===== Editing / convenience =====
 -- Exit insert mode with "kj" (and variants)
-map('i', 'kj', '<Esc>', opts); map('i', 'Kj', '<Esc>', opts)
-map('i', 'kJ', '<Esc>', opts); map('i', 'KJ', '<Esc>', opts)
+vim.keymap.set('i', 'kj', '<Esc>', opts)
+vim.keymap.set('i', 'Kj', '<Esc>', opts)
+vim.keymap.set('i', 'kJ', '<Esc>', opts)
+vim.keymap.set('i', 'KJ', '<Esc>', opts)
 
 -- Keep clipboard when pasting over selection
-map('x', 'p', 'pgvy', opts)
+vim.keymap.set('x', 'p', 'pgvy', opts)
 
 -- Clear search highlight
-map('n', '<BS>', '<cmd>nohlsearch<CR>', opts)
+vim.keymap.set('n', '<BS>', '<cmd>nohlsearch<CR>', opts)
 
 -- Insert date/time for work log
 local function log_date() vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes([[G$"=strftime("\n\n# %F\n\n- %T ")<CR>pGA]], true, false, true), 'n', false) end
 local function log_time() vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes([[G$"=strftime("\n- %T ")<CR>pGA]], true, false, true), 'n', false) end
-map({'n','i'}, '<F5>', function() vim.cmd('stopinsert'); log_date() end, opts)
-map({'n','i'}, '<F6>', function() vim.cmd('stopinsert'); log_time() end, opts)
+vim.keymap.set({'n','i'}, '<F5>', function() vim.cmd('stopinsert'); log_date() end, opts)
+vim.keymap.set({'n','i'}, '<F6>', function() vim.cmd('stopinsert'); log_time() end, opts)
 
 -- ===== Navigation =====
 -- Buffers (note: <C-H> may be eaten by terminals/backspace; change if needed)
-map('n', '<C-H>', '<cmd>bprevious!<CR>', opts)
-map('n', '<C-L>', '<cmd>bnext!<CR>', opts)
+vim.keymap.set('n', '<C-H>', '<cmd>bprevious!<CR>', opts)
+vim.keymap.set('n', '<C-L>', '<cmd>bnext!<CR>', opts)
 
 -- Tabs
-map('n', '<C-G>', '<cmd>tabprevious<CR>', opts)
-map('n', '<C-M>', '<cmd>tabnext<CR>', opts)  -- <C-M> == Enter in some terms; adjust if it conflicts
+vim.keymap.set('n', '<C-G>', '<cmd>tabprevious<CR>', opts)
+vim.keymap.set('n', '<C-M>', '<cmd>tabnext<CR>', opts)  -- <C-M> == Enter in some terms; adjust if it conflicts
 
 -- Close buffer but keep window
-map('n', ',d', '<cmd>bn | bd#<CR>', opts)
+vim.keymap.set('n', ',d', '<cmd>bn | bd#<CR>', opts)
 
 -- Toggle file tree (will point to NERDTree/nvim-tree later)
 vim.keymap.set('n', '<C-k>', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
@@ -154,26 +155,26 @@ local function NextError()
     end
   end
 end
-map('n', '<F8>', NextError, opts)
+vim.keymap.set('n', '<F8>', NextError, opts)
 
 -- ===== LSP-ready replacements for old YCM maps =====
 -- (These will work once we enable LSP; safe to keep now.)
 -- Dumb s/R under cursor (kept as-is)
-map('n', '<F1>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>]], { noremap=true })
+vim.keymap.set('n', '<F1>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>]], { noremap=true })
 
 -- Smart rename / fix / docs
-map('n', '<F2>', vim.lsp.buf.rename, opts)                 -- YCM: RefactorRename
-map('n', '<F3>', vim.lsp.buf.code_action, opts)            -- YCM: FixIt
-map('n', '<F9>', vim.lsp.buf.hover, opts)                  -- YCM: GetDoc
+vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)                 -- YCM: RefactorRename
+vim.keymap.set('n', '<F3>', vim.lsp.buf.code_action, opts)            -- YCM: FixIt
+vim.keymap.set('n', '<F9>', vim.lsp.buf.hover, opts)                  -- YCM: GetDoc
 
 -- Go to definition/type, show type-ish
-map('n', 'ù',  vim.lsp.buf.definition, opts)
-map('n', 'gt', vim.lsp.buf.type_definition, opts)
-map('n', 'g?', vim.lsp.buf.hover, opts)
-map('n', 'gi', vim.lsp.buf.incoming_calls, opts)
+vim.keymap.set('n', 'ù',  vim.lsp.buf.definition, opts)
+vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
+vim.keymap.set('n', 'g?', vim.lsp.buf.hover, opts)
+vim.keymap.set('n', 'gi', vim.lsp.buf.incoming_calls, opts)
 
 -- Jump back
-map('n', '!', '<C-o>', opts)
+vim.keymap.set('n', '!', '<C-o>', opts)
 
 -- ===== Spelling =====
 vim.opt.spell = true
@@ -359,4 +360,4 @@ for _, m in ipairs({ 'n','o','x' }) do
 end
 
 -- Fugitive
-map('n', 'gb', '<cmd>Git blame<CR>', opts)
+vim.keymap.set('n', 'gb', '<cmd>Git blame<CR>', opts)
