@@ -314,17 +314,13 @@ end
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = { "rust_analyzer", "pyright", "ts_ls", "clangd", "lua_ls" },
-  handlers = {
-    function(server) lspconfig[server].setup({ capabilities = capabilities, on_attach = on_attach }) end,
-    -- Fine-tuning examples:
-    ["lua_ls"] = function()
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities, on_attach = on_attach,
-        settings = { Lua = { diagnostics = { globals = { "vim" } } } },
-      })
-    end,
-  },
 })
+
+vim.lsp.config["lua_ls"] = {
+  settings = {
+    Lua = { diagnostics = { globals = { "vim" } } }
+  },
+}
 
 
 require("Comment").setup()
