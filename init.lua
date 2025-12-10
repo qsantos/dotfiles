@@ -136,41 +136,18 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
--- ===== “NextError” helper (location list/quickfix) =====
-local function NextError()
-  local ok = pcall(vim.cmd, 'lnext')
-  if not ok then
-    -- No more loclist items or no loclist -> fall back to quickfix
-    local ok2 = pcall(vim.cmd, 'lfirst')
-    if not ok2 then
-      local ok3 = pcall(vim.cmd, 'cnext')
-      if not ok3 then
-        pcall(vim.cmd, 'cfirst')
-        if not pcall(vim.cmd, 'cfirst') then
-          vim.notify('No errors', vim.log.levels.INFO)
-        end
-      end
-    end
-  end
-end
-vim.keymap.set('n', '<F8>', NextError)
-
 -- ===== LSP-ready replacements for old YCM maps =====
 -- (These will work once we enable LSP; safe to keep now.)
 -- Dumb s/R under cursor (kept as-is)
 vim.keymap.set('n', '<F1>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>]], { noremap=true })
 
--- Smart rename / fix / docs
-vim.keymap.set('n', '<F2>', vim.lsp.buf.rename)                 -- YCM: RefactorRename
-vim.keymap.set('n', '<F3>', vim.lsp.buf.code_action)            -- YCM: FixIt
-vim.keymap.set('n', '<F9>', vim.lsp.buf.hover)                  -- YCM: GetDoc
-
--- Go to definition/type, show type-ish
+vim.keymap.set('n', '<F2>', vim.lsp.buf.rename)
+vim.keymap.set('n', 'gh', vim.lsp.buf.rename)
 vim.keymap.set('n', 'ù',  vim.lsp.buf.definition)
 vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition)
 vim.keymap.set('n', 'g?', vim.lsp.buf.hover)
 vim.keymap.set('n', 'gi', vim.lsp.buf.incoming_calls)
-
+vim.keymap.set('n', 'gj', vim.lsp.buf.code_action)
 -- Jump back
 vim.keymap.set('n', '!', '<C-o>')
 
@@ -302,15 +279,6 @@ cmp.setup({
 vim.opt.completeopt = { "menuone", "noselect" }
 
 -- LSP
-local lspconfig = require("lspconfig")
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local function on_attach(client, bufnr)
-  -- enable inlay hints if available
-  local ih = vim.lsp.inlay_hint or vim.lsp.inlay_hint.enable
-  if ih then pcall(function() vim.lsp.inlay_hint(bufnr, true) end) end
-end
-
--- Ensure servers via mason
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = { "rust_analyzer", "pyright", "ts_ls", "clangd", "lua_ls" },
@@ -337,20 +305,24 @@ vim.keymap.set("n", "<leader>hp", gs.preview_hunk)
 vim.keymap.set("n", "<leader>hs", gs.stage_hunk)
 vim.keymap.set("n", "<leader>hu", gs.undo_stage_hunk)
 
--- Diagnostics: nicer defaults
+
+-- Diagnostics
 vim.diagnostic.config({
-  virtual_text = false,  -- cleaner; use hover for details
+  virtual_text = true,
   signs = true,
   update_in_insert = false,
   severity_sort = true,
 })
+vim.keymap.set("n", ")d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "(d", vim.diagnostic.goto_prev)
+
 -- quick peek diagnostics under cursor (same feel as YCM popups)
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { silent = true })
 
 -- unimpaired equivalent
 for _, m in ipairs({ 'n','o','x' }) do
-  vim.keymap.set(m, '(', '[', { noremap=true })
-  vim.keymap.set(m, ')', ']', { noremap=true })
+  vim.keymap.set(m, '(', '[')
+  vim.keymap.set(m, ')', ']')
 end
 
 -- Fugitive
