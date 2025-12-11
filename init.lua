@@ -17,7 +17,6 @@ require("lazy").setup({
   -- commands
   { "tpope/vim-unimpaired" },
   { "tpope/vim-fugitive" },
-  { "numToStr/Comment.nvim", opts = {} },                                   -- nerdcommenter → Comment.nvim
   { "nvim-tree/nvim-tree.lua", opts = {} },                                 -- NERDTree → nvim-tree
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } }, -- ctrlp → telescope
 
@@ -290,8 +289,6 @@ vim.lsp.config["lua_ls"] = {
   },
 }
 
-
-require("Comment").setup()
 vim.keymap.set("n", "<leader>c", "gcc", { remap = true })
 vim.keymap.set("v", "<leader>c", "gc", { remap = true })
 
