@@ -135,6 +135,14 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
+-- close qflist when selecting a file
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    callback = function()
+        vim.keymap.set("n", "<CR>", "<CR>:cclose<CR>", { buffer = true })
+    end,
+})
+
 -- ===== LSP-ready replacements for old YCM maps =====
 -- (These will work once we enable LSP; safe to keep now.)
 -- Dumb s/R under cursor (kept as-is)
