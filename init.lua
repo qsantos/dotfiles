@@ -1,4 +1,3 @@
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({ "git", "clone", "--filter=blob:none",
@@ -8,23 +7,23 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- appearance
-  { "nvim-lualine/lualine.nvim", opts = { options = { theme = "auto" } } }, -- airline → lualine
+  { "nvim-lualine/lualine.nvim", opts = { options = { theme = "auto" } } },
   { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
-  { "nvim-tree/nvim-web-devicons" },                                        -- devicons
-  { "lewis6991/gitsigns.nvim", opts = {} },                                 -- gitgutter → gitsigns
+  { "nvim-tree/nvim-web-devicons" },
+  { "lewis6991/gitsigns.nvim", opts = {} },
   { "folke/tokyonight.nvim", opts = {} },
 
   -- commands
   { "tpope/vim-unimpaired" },
   { "tpope/vim-fugitive" },
-  { "nvim-tree/nvim-tree.lua", opts = {} },                                 -- NERDTree → nvim-tree
-  { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } }, -- ctrlp → telescope
+  { "nvim-tree/nvim-tree.lua", opts = {} },
+  { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
   -- syntax / LSP-ready
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  { "nvim-treesitter/nvim-treesitter-context" },                            -- context.vim → treesitter-context
-  { "preservim/vim-markdown" },                                             -- keep
-  { "leafgarland/typescript-vim" },                                         -- keep for ft; TS will do most work
+  { "nvim-treesitter/nvim-treesitter-context" },
+  { "preservim/vim-markdown" },
+  { "leafgarland/typescript-vim" },
 
   -- LSP + completion
   { "williamboman/mason.nvim", build = ":MasonUpdate", opts = {} },
@@ -44,12 +43,12 @@ require("treesitter-context").setup({
 })
 vim.o.scrolloff = 4
 
--- ===== Bufferline (Airline tabline replacement) =====
+-- tabs
 require("bufferline").setup({
   options = {
-    mode = "buffers",           -- show buffers, not tabs
+    mode = "buffers", -- show buffers, not tabs
     numbers = "none",
-    diagnostics = "nvim_lsp",   -- optional: show LSP errors per buffer
+    diagnostics = "nvim_lsp", -- optional: show LSP errors per buffer
     separator_style = "slant",
     show_buffer_close_icons = false,
     show_close_icon = false,
@@ -58,16 +57,21 @@ require("bufferline").setup({
     max_name_length = 999,
     max_prefix_length = 999,
     truncate_names = false,
-    name_formatter = function(buf)  -- buf contains:
+    name_formatter = function(buf)
         return vim.fn.fnamemodify(buf.path, ":.")
     end,
   },
 })
+vim.keymap.set('n', '<C-H>', '<cmd>bprevious!<CR>')
+vim.keymap.set('n', '<C-L>', '<cmd>bnext!<CR>')
+vim.keymap.set('n', '<C-G>', '<cmd>tabprevious<CR>')
+vim.keymap.set('n', '<C-M>', '<cmd>tabnext<CR>')
+vim.keymap.set('n', ',d', '<cmd>bn | bd#<CR>')
 
 require("lualine").setup({
   sections = {
     lualine_c = {
-      { "filename", path = 1 },  -- 0 = basename, 1 = relative, 2 = absolute
+      { "filename", path = 1 }, -- 0 = basename, 1 = relative, 2 = absolute
     },
   },
 })
@@ -75,7 +79,6 @@ require("lualine").setup({
 -- Keymaps
 vim.keymap.set('n', '<C-H>', '<cmd>BufferLineCyclePrev<CR>', { silent = true })
 vim.keymap.set('n', '<C-L>', '<cmd>BufferLineCycleNext<CR>', { silent = true })
-vim.keymap.set('n', ',d', '<cmd>bd<CR>', { silent = true }) -- close buffer
 
 require("tokyonight").setup({
   style = "night",
@@ -91,15 +94,11 @@ vim.cmd.colorscheme("tokyonight")
 -- Leader
 vim.g.mapleader = ' '
 
--- ===== Editing / convenience =====
 -- Exit insert mode with "kj" (and variants)
 vim.keymap.set('i', 'kj', '<Esc>')
 vim.keymap.set('i', 'Kj', '<Esc>')
 vim.keymap.set('i', 'kJ', '<Esc>')
 vim.keymap.set('i', 'KJ', '<Esc>')
-
--- Keep clipboard when pasting over selection
-vim.keymap.set('x', 'p', 'pgvy')
 
 -- Clear search highlight
 vim.keymap.set('n', '<BS>', '<cmd>nohlsearch<CR>')
@@ -110,19 +109,7 @@ local function log_time() vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes([
 vim.keymap.set({'n','i'}, '<F5>', function() vim.cmd('stopinsert'); log_date() end)
 vim.keymap.set({'n','i'}, '<F6>', function() vim.cmd('stopinsert'); log_time() end)
 
--- ===== Navigation =====
--- Buffers (note: <C-H> may be eaten by terminals/backspace; change if needed)
-vim.keymap.set('n', '<C-H>', '<cmd>bprevious!<CR>')
-vim.keymap.set('n', '<C-L>', '<cmd>bnext!<CR>')
-
--- Tabs
-vim.keymap.set('n', '<C-G>', '<cmd>tabprevious<CR>')
-vim.keymap.set('n', '<C-M>', '<cmd>tabnext<CR>')  -- <C-M> == Enter in some terms; adjust if it conflicts
-
--- Close buffer but keep window
-vim.keymap.set('n', ',d', '<cmd>bn | bd#<CR>')
-
--- Toggle file tree (will point to NERDTree/nvim-tree later)
+-- Toggle file tree
 vim.keymap.set('n', '<C-k>', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
 require("nvim-tree").setup({
   actions = { open_file = { quit_on_open = true } },
@@ -143,11 +130,8 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- ===== LSP-ready replacements for old YCM maps =====
--- (These will work once we enable LSP; safe to keep now.)
--- Dumb s/R under cursor (kept as-is)
+-- LSP
 vim.keymap.set('n', '<F1>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>]], { noremap=true })
-
 vim.keymap.set('n', '<F2>', vim.lsp.buf.rename)
 vim.keymap.set('n', 'gh', vim.lsp.buf.rename)
 vim.keymap.set('n', 'ù',  vim.lsp.buf.definition)
@@ -155,15 +139,13 @@ vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition)
 vim.keymap.set('n', 'g?', vim.lsp.buf.hover)
 vim.keymap.set('n', 'gi', vim.lsp.buf.incoming_calls)
 vim.keymap.set('n', 'gj', vim.lsp.buf.code_action)
--- Jump back
 vim.keymap.set('n', '!', '<C-t>')
 
--- ===== Spelling =====
+-- Spelling
 vim.opt.spell = true
 vim.opt.spelllang:append("cjk")
 vim.opt.spelloptions = "camel"
 
--- ===== Listchars / wrapping / ruler =====
 vim.opt.list = true
 vim.opt.listchars = {
   nbsp = "~", tab = ">-",
@@ -174,10 +156,18 @@ vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.showbreak = "↪"
 vim.opt.colorcolumn = "100"
-
 vim.opt.clipboard = "unnamedplus"
+vim.opt.number = true
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.autoindent = true
+-- vim.g.pyindent_open_paren = "&sw"
+-- vim.g.pyindent_nested_paren = "&sw"
+-- vim.g.pyindent_continue = "&sw"
 
--- ===== Title & optional tmux rename =====
+-- title
 vim.opt.title = true
 if os.getenv("TMUX") then
   local aug = vim.api.nvim_create_augroup("TmuxRename", { clear = true })
@@ -195,8 +185,7 @@ if os.getenv("TMUX") then
   })
 end
 
--- ===== Filetype tweaks =====
--- Treat *.js as TypeScript syntax with JS highl.
+-- JSDoc in .js files
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.js",
   callback = function()
@@ -214,7 +203,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- ===== Markdown / TeX =====
+-- Markdown / TeX
 vim.g.markdown_fenced_languages = {
   "c", "css", "javascript", "js=javascript", "json=javascript",
   "html", "python",
@@ -222,24 +211,11 @@ vim.g.markdown_fenced_languages = {
 vim.g["pandoc#syntax#codeblocks#embeds#langs"] = { "json=javascript", "ruby", "python", "bash=sh" }
 vim.g.tex_flavor = "latex"
 
--- ===== Syntax sync for large files =====
+-- Syntax sync for large files
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*",
   command = "syntax sync fromstart",
 })
-
-vim.opt.number = true
-
--- ===== Indent settings =====
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.autoindent = true
--- Match your old python.vim indent knobs
-vim.g.pyindent_open_paren = "&sw"
-vim.g.pyindent_nested_paren = "&sw"
-vim.g.pyindent_continue = "&sw"
 
 -- robust undodir (try state, fallback to data)
 local candidates = {
@@ -286,7 +262,6 @@ autocmd('BufReadPost', {
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
-
 cmp.setup({
   snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
   mapping = cmp.mapping.preset.insert({
@@ -312,18 +287,20 @@ require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = { "rust_analyzer", "pyright", "ts_ls", "clangd", "lua_ls" },
 })
-
 vim.lsp.config["lua_ls"] = {
   settings = {
     Lua = { diagnostics = { globals = { "vim" } } }
   },
 }
 
+-- comment / uncomment
 vim.keymap.set("n", "<leader>c", "gcc", { remap = true })
 vim.keymap.set("v", "<leader>c", "gc", { remap = true })
 
+-- git
 local gs = require("gitsigns")
 gs.setup()
+vim.keymap.set('n', 'gb', '<cmd>Git blame<CR>')
 vim.keymap.set("n", "]h", gs.next_hunk)
 vim.keymap.set("n", "[h", gs.prev_hunk)
 vim.keymap.set("n", ")h", gs.next_hunk)
@@ -332,8 +309,7 @@ vim.keymap.set("n", "<leader>hp", gs.preview_hunk)
 vim.keymap.set("n", "<leader>hs", gs.stage_hunk)
 vim.keymap.set("n", "<leader>hu", gs.undo_stage_hunk)
 
-
--- Diagnostics
+-- diagnostics
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
@@ -342,8 +318,6 @@ vim.diagnostic.config({
 })
 vim.keymap.set("n", ")d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "(d", vim.diagnostic.goto_prev)
-
--- quick peek diagnostics under cursor (same feel as YCM popups)
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { silent = true })
 
 -- unimpaired equivalent
@@ -351,6 +325,3 @@ for _, m in ipairs({ 'n','o','x' }) do
   vim.keymap.set(m, '(', '[')
   vim.keymap.set(m, ')', ']')
 end
-
--- Fugitive
-vim.keymap.set('n', 'gb', '<cmd>Git blame<CR>')
