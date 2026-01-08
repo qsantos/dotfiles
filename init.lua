@@ -25,6 +25,10 @@ require("lazy").setup({
   { "preservim/vim-markdown" },
   { "leafgarland/typescript-vim" },
 
+  { "mfussenegger/nvim-dap" },
+  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }},
+  { "jay-babu/mason-nvim-dap.nvim" },
+
   -- LSP + completion
   { "williamboman/mason.nvim", build = ":MasonUpdate", opts = {} },
   { "williamboman/mason-lspconfig.nvim", opts = {} },
@@ -292,6 +296,45 @@ vim.lsp.config["lua_ls"] = {
     Lua = { diagnostics = { globals = { "vim" } } }
   },
 }
+require("mason-nvim-dap").setup({
+  ensure_installed = { "codelldb" },
+})
+
+local dap = require("dap")
+
+dap.adapters.codelldb = {
+  type = "server",
+  port = "${port}",
+  executable = {
+    command = "codelldb",
+    args = { "--port", "${port}" },
+  },
+}
+
+dap.configurations.c = {
+  {
+    name = "Launch",
+    type = "codelldb",
+    request = "launch",
+    program = function() return vim.fn.input("Binary: ", vim.fn.getcwd().."/", "file") end,
+    cwd = "${workspaceFolder}",
+  },
+}
+dap.configurations.rust = dap.configurations.c
+
+require("dapui").setup()
+vim.keymap.set("n", "<F5>", dap.continue)
+vim.keymap.set("n", "<F8>", require("dapui").open)
+vim.keymap.set("n", "<F9>", dap.toggle_breakpoint)
+vim.keymap.set("n", "<F10>", dap.continue)
+vim.fn.sign_define("DapBreakpoint", {
+  text = "●",
+  texthl = "DiagnosticError",
+})
+vim.fn.sign_define("DapStopped", {
+  text = "▶",
+  texthl = "DiagnosticError",
+})
 
 -- comment / uncomment
 vim.keymap.set("n", "<leader>c", "gcc", { remap = true })
