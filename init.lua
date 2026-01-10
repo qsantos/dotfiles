@@ -189,15 +189,6 @@ if os.getenv("TMUX") then
   })
 end
 
--- JSDoc in .js files
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.js",
-  callback = function()
-    vim.bo.filetype = "typescript"
-    vim.cmd("syntax=javascript")
-  end,
-})
-
 -- Git commit formatting
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",
