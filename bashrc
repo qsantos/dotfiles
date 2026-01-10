@@ -38,6 +38,7 @@ alias rem='sudo apt autoremove --purge'
 
 # network
 alias y='yt-dlp -i -o "%(upload_date)s - %(title)s - %(id)s.%(ext)s" --no-playlist -f248+bestaudio/bestvideo+bestaudio/best --merge-output-format mkv'
+alias ymp3='yt-dlp -i -o "%(upload_date)s - %(title)s - %(id)s.%(acodec)s" --no-playlist -fbestaudio'
 alias playlist='youtube-dl -i -o "%(playlist_index)s-%(title)s - %(id)s.%(ext)s" -f248+bestaudio/bestvideo+bestaudio/best --merge-output-format mkv'
 alias wget='wget --content-disposition'
 s() {
