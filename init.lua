@@ -171,6 +171,9 @@ vim.opt.autoindent = true
 -- vim.g.pyindent_nested_paren = "&sw"
 -- vim.g.pyindent_continue = "&sw"
 
+-- Keep clipboard when visual pasting
+vim.keymap.set("v", "p", '"_dP', { noremap = true })
+
 -- title
 vim.opt.title = true
 if os.getenv("TMUX") then
