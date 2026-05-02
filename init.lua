@@ -283,8 +283,12 @@ vim.opt.completeopt = { "menuone", "noselect" }
 -- LSP
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "rust_analyzer", "pyright", "ts_ls", "clangd", "lua_ls" },
+  ensure_installed = { "pyright", "ts_ls", "clangd", "lua_ls" },
 })
+vim.lsp.config["rust_analyzer"] = {
+  cmd = { vim.fn.expand("~/.cargo/bin/rust-analyzer") },
+}
+vim.lsp.enable("rust_analyzer")
 vim.lsp.config["lua_ls"] = {
   settings = {
     Lua = { diagnostics = { globals = { "vim" } } }
