@@ -85,3 +85,5 @@ commit = yellow bold
 old = red bold
 new = green bold
 whitespace = red reverse
+[diff-so-fancy]
+stripLeadingSymbols = false
