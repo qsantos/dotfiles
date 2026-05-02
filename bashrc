@@ -124,7 +124,7 @@ alias cc='cargo clippy --no-deps'
 alias co='cargo doc'
 
 # misc
-export EDITOR='vim'
+export EDITOR='nvim'
 alias n='nvim'
 alias svi='sudo -E vim'
 alias phone='adb shell -t bash'
