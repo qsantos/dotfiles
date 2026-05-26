@@ -60,6 +60,7 @@ syntax on
 au BufNewFile,BufRead *.js setlocal filetype=typescript syntax=javascript
 " Use the recommended commit title and text wrapping for git commit messages
 au Filetype gitcommit setlocal colorcolumn=51 textwidth=72
+au BufNewFile,BufRead *.nix setlocal sw=2 ts=2
 " Markdown code blocks <https://www.reddit.com/r/vim/comments/2x5yav/markdown_with_fenced_code_blocks_is_great/>
 let g:markdown_fenced_languages = ['c', 'css', 'javascript', 'js=javascript', 'json=javascript', 'html', 'python']
 let g:pandoc#syntax#codeblocks#embeds#langs = ['json=javascript', 'ruby', 'python', 'bash=sh']
