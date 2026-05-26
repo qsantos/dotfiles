@@ -13,6 +13,7 @@ setopt interactivecomments
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
+# Hit Ctrl+X Ctrl+E to edit command line in EDITOR
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
