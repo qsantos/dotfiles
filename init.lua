@@ -111,8 +111,20 @@ vim.keymap.set('n', '<BS>', '<cmd>nohlsearch<CR>')
 -- Insert date/time for work log
 local function log_date() vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes([[G$"=strftime("\n\n# %F\n\n- %T ")<CR>pGA]], true, false, true), 'n', false) end
 local function log_time() vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes([[G$"=strftime("\n- %T ")<CR>pGA]], true, false, true), 'n', false) end
-vim.keymap.set({'n','i'}, '<F5>', function() vim.cmd('stopinsert'); log_date() end)
-vim.keymap.set({'n','i'}, '<F6>', function() vim.cmd('stopinsert'); log_time() end)
+local function log_smart()
+  vim.cmd('stopinsert')
+  local today = vim.fn.strftime('%F')
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  for i = #lines, 1, -1 do
+    local date = lines[i]:match('^# (.+)')
+    if date then
+      if date == today then log_time() else log_date() end
+      return
+    end
+  end
+  log_date()
+end
+vim.keymap.set({'n','i'}, '<F5>', log_smart)
 
 -- Toggle file tree
 vim.keymap.set('n', '<C-k>', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
