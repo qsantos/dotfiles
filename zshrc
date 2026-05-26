@@ -91,11 +91,12 @@ compdef s=ssh
 compdef cfg-sync=ssh
 compdef tmux-ssh=ssh
 
-[[ "$(hostname)" == "milo"     ]] && HOSTCOLOR="red"
-[[ "$(hostname)" == "aslan"    ]] && HOSTCOLOR="yellow"
-[[ "$(hostname)" == "ender"    ]] && HOSTCOLOR="black"
-[[ "$(hostname)" == "gandalf"  ]] && HOSTCOLOR="white"
-[[ "$(hostname)" == "frodo"    ]] && HOSTCOLOR="red"
+# HOSTNAME="$(hostname)"
+# [[ "$HOSTNAME" == "milo"     ]] && HOSTCOLOR="red"
+# [[ "$HOSTNAME" == "aslan"    ]] && HOSTCOLOR="yellow"
+# [[ "$HOSTNAME" == "ender"    ]] && HOSTCOLOR="black"
+# [[ "$HOSTNAME" == "gandalf"  ]] && HOSTCOLOR="white"
+# [[ "$HOSTNAME" == "frodo"    ]] && HOSTCOLOR="red"
 PS1="%F{green}%~%F{$HOSTCOLOR}%#%f "
 
 # Allow Ctrl-z to toggle between suspend and resume
