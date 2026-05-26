@@ -22,6 +22,7 @@ Plugin 'preservim/vim-markdown'  " nice Markdown
 Plugin 'ycm-core/YouCompleteMe'  " C, C++, Python, Rust, TypeScript, file paths
 Plugin 'leafgarland/typescript-vim'  " TypeScript
 Plugin 'wellle/context.vim'  " sticky scroll
+Plugin 'kaarmu/typst.vim'
 
 call vundle#end()
 
