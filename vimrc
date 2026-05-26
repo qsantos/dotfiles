@@ -111,7 +111,7 @@ set expandtab shiftwidth=4 tabstop=4 softtabstop=4 autoindent  "indentexpr=
 set mouse=a " Allow using the mouse to move the cursor, scroll, select visual mode, etc.
 set clipboard=unnamedplus " Integrate with the normal clipboard
 set modeline  " detect /* vim: noai:ts=4:sw=4 */
-set matchpairs+=<:>  " match < and > as well
+set matchpairs+=<:>,“:”,«:»  " match < and > as well
 set nojoinspaces  " single space when joining sentences
 set undofile undodir=$HOME/.vim/undo  " persistent undo history
 set nobackup nowritebackup noswapfile dir=/tmp  " no temporary files
