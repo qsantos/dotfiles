@@ -131,7 +131,6 @@ alias phone='adb shell -t bash'
 alias rm='rm --one-file-system'
 alias cp='cp -i'
 alias mgrep='pcregrep --color=always -M'
-alias w='watch '
 alias imginfo="exiv2 -g 'DateTime$'"
 alias imgsort="jhead -n%Y-%m-%d/%f"
 alias perfsvg="perf script | stackcollapse-perf.pl | flamegraph.pl --height=24"
