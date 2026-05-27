@@ -88,7 +88,6 @@ _rem(){
 
 # SSH autocompletion
 compdef s=ssh
-compdef cfg-sync=ssh
 compdef tmux-ssh=ssh
 
 # HOSTNAME="$(hostname)"
