@@ -34,7 +34,7 @@ alias pol='apt-cache policy'
 alias upd='sudo apt update'
 alias upg='sudo env DEBIAN_FRONTEND=noninteractive apt full-upgrade'
 alias ins='sudo apt install'
-alias rem='sudo apt autoremove --purge'
+alias rem='sudo apt remove --purge --autoremove'
 
 # network
 alias y='yt-dlp -i -o "%(upload_date)s - %(title)s - %(id)s.%(ext)s" --no-playlist -f248+bestaudio/bestvideo+bestaudio/best --merge-output-format mkv'

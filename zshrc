@@ -72,8 +72,6 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # apt-get autocompletion
-# next line is commented out because it breaks git alias completion
-# setopt complete_aliases
 compdef _ins ins
 _ins(){
     service=apt CURRENT+=1
