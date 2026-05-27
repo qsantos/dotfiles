@@ -113,4 +113,13 @@ bindkey "^Z" Resume
 # compatibility with bash completion
 autoload bashcompinit && bashcompinit
 
+_paste_strip_trailing_spaces() {
+  local pre=${#LBUFFER}
+  zle .bracketed-paste
+  local pasted="${LBUFFER:$pre}"
+  pasted="$(printf '%s' "$pasted" | sed 's/[[:blank:]]*$//')"
+  LBUFFER="${LBUFFER:0:$pre}${pasted}"
+}
+zle -N bracketed-paste _paste_strip_trailing_spaces
+
 eval "$(direnv hook zsh)"
