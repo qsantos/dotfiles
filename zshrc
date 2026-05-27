@@ -109,9 +109,6 @@ function Resume {
 zle -N Resume
 bindkey "^Z" Resume
 
-# compatibility with bash completion
-autoload bashcompinit && bashcompinit
-
 _paste_strip_trailing_spaces() {
   local pre=${#LBUFFER}
   zle .bracketed-paste
