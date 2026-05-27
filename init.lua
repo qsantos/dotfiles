@@ -66,10 +66,6 @@ require("bufferline").setup({
     end,
   },
 })
-vim.keymap.set('n', '<C-H>', '<cmd>bprevious!<CR>')
-vim.keymap.set('n', '<C-L>', '<cmd>bnext!<CR>')
-vim.keymap.set('n', '<C-G>', '<cmd>tabprevious<CR>')
-vim.keymap.set('n', '<C-M>', '<cmd>tabnext<CR>')
 vim.keymap.set('n', ',d', '<cmd>bn | bd#<CR>')
 
 require("lualine").setup({
