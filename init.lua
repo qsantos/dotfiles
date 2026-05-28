@@ -120,7 +120,12 @@ local function log_smart()
   end
   log_date()
 end
-vim.keymap.set({'n','i'}, '<F5>', log_smart)
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    vim.keymap.set({'n','i'}, '<F5>', log_smart, { buffer = true })
+  end,
+})
 
 -- Toggle file tree
 vim.keymap.set('n', '<C-k>', '<cmd>NvimTreeToggle<CR>', { noremap = true, silent = true })
