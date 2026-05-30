@@ -380,3 +380,11 @@ for _, m in ipairs({ 'n','o','x' }) do
   vim.keymap.set(m, '(', '[')
   vim.keymap.set(m, ')', ']')
 end
+
+-- Unbreak gx in Markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.keymap.del("n", "gx", { buffer = true })
+  end,
+})
