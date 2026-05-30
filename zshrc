@@ -81,9 +81,7 @@ _ins(){
 }
 compdef _rem rem
 _rem(){
-    service=apt CURRENT+=1
-    words=(apt remove)
-    _apt
+    _deb_packages installed
 }
 
 # SSH autocompletion
