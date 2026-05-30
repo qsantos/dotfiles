@@ -88,12 +88,12 @@ _rem(){
 compdef s=ssh
 compdef tmux-ssh=ssh
 
-# HOSTNAME="$(hostname)"
-# [[ "$HOSTNAME" == "milo"     ]] && HOSTCOLOR="red"
-# [[ "$HOSTNAME" == "aslan"    ]] && HOSTCOLOR="yellow"
-# [[ "$HOSTNAME" == "ender"    ]] && HOSTCOLOR="black"
-# [[ "$HOSTNAME" == "gandalf"  ]] && HOSTCOLOR="white"
-# [[ "$HOSTNAME" == "frodo"    ]] && HOSTCOLOR="red"
+case "$HOST" in
+    milo|frodo) HOSTCOLOR=red    ;;
+    aslan)      HOSTCOLOR=yellow ;;
+    ender)      HOSTCOLOR=black  ;;
+    gandalf)    HOSTCOLOR=white  ;;
+esac
 PS1="%F{green}%~%F{$HOSTCOLOR}%#%f "
 
 # Allow Ctrl-z to toggle between suspend and resume
