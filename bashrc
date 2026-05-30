@@ -11,11 +11,12 @@ PATH=~/bin:~/.local/bin:$PATH
 # 35  purple
 # 36  cyan
 # 37  white
-[[ "$(hostname)" == "milo"     ]] && HOSTCOLOR=31
-[[ "$(hostname)" == "aslan"    ]] && HOSTCOLOR=33
-[[ "$(hostname)" == "ender"    ]] && HOSTCOLOR=30
-[[ "$(hostname)" == "gandalf"  ]] && HOSTCOLOR=37
-[[ "$(hostname)" == "frodo"    ]] && HOSTCOLOR=31
+HOSTNAME="$(hostname)"
+[[ "$HOSTNAME" == "milo"     ]] && HOSTCOLOR=31
+[[ "$HOSTNAME" == "aslan"    ]] && HOSTCOLOR=33
+[[ "$HOSTNAME" == "ender"    ]] && HOSTCOLOR=30
+[[ "$HOSTNAME" == "gandalf"  ]] && HOSTCOLOR=37
+[[ "$HOSTNAME" == "frodo"    ]] && HOSTCOLOR=31
 # see https://unix.stackexchange.com/a/367487 for \[ and \]
 PS1=$(printf $'\[\e[32m\]\w\[\e[%dm\]\$\[\e[00m\] ' "$HOSTCOLOR")
 
