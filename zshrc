@@ -96,6 +96,14 @@ case "$HOST" in
 esac
 PS1="%F{green}%~%F{$HOSTCOLOR}%#%f "
 
+# Ctrl+Alt+L clears terminal history like in regular readline
+clear-screen-and-scrollback() {
+    printf '\e[H\e[2J\e[3J'
+    zle reset-prompt
+}
+zle -N clear-screen-and-scrollback
+bindkey '^[^L' clear-screen-and-scrollback
+
 # Allow Ctrl-z to toggle between suspend and resume
 # from https://news.ycombinator.com/item?id=34309989
 function Resume {
