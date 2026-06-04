@@ -115,13 +115,5 @@ function Resume {
 zle -N Resume
 bindkey "^Z" Resume
 
-_paste_strip_trailing_spaces() {
-  local pre=${#LBUFFER}
-  zle .bracketed-paste
-  local pasted="${LBUFFER:$pre}"
-  pasted="$(printf '%s' "$pasted" | sed 's/[[:blank:]]*$//')"
-  LBUFFER="${LBUFFER:0:$pre}${pasted}"
-}
-zle -N bracketed-paste _paste_strip_trailing_spaces
 
 eval "$(direnv hook zsh)"

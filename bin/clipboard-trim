@@ -1,0 +1,14 @@
+#!/bin/bash
+# Strip trailing whitespace from clipboard content whenever it changes
+prev=""
+while true; do
+    current=$(xclip -o -selection clipboard 2>/dev/null) || { sleep 0.2; continue; }
+    if [ "$current" != "$prev" ]; then
+        stripped=$(printf '%s' "$current" | sed 's/[[:blank:]]*$//')
+        if [ "$stripped" != "$current" ]; then
+            printf '%s' "$stripped" | xclip -i -selection clipboard
+        fi
+        prev="$stripped"
+    fi
+    sleep 0.2
+done

@@ -1,0 +1,11 @@
+[Unit]
+Description=Strip trailing spaces from clipboard
+After=graphical-session.target
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=%h/src/dotfiles/bin/clipboard-trim
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
