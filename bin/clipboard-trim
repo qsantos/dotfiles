@@ -2,6 +2,11 @@
 # Strip trailing whitespace from clipboard content whenever it changes
 prev=""
 while true; do
+    targets=$(timeout -k 1 2 xclip -o -selection clipboard -t TARGETS 2>/dev/null) || { sleep 0.2; continue; }
+    case "$targets" in
+        *UTF8_STRING*|*[[:space:]]STRING*|*text/plain*) ;;
+        *) sleep 0.2; continue ;;
+    esac
     current=$(timeout -k 1 2 xclip -o -selection clipboard 2>/dev/null) || { sleep 0.2; continue; }
     if [ "$current" != "$prev" ]; then
         stripped=$(printf '%s' "$current" | sed 's/[[:blank:]]*$//')
