@@ -186,7 +186,7 @@ vim.opt.autoindent = true
 -- vim.g.pyindent_continue = "&sw"
 
 -- Keep clipboard when visual pasting
-vim.keymap.set("v", "p", '"_dP', { noremap = true })
+vim.keymap.set("v", "p", "P", { noremap = true })
 
 -- title
 vim.opt.title = true
