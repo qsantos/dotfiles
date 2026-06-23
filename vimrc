@@ -116,8 +116,6 @@ set nojoinspaces  " single space when joining sentences
 set undofile undodir=$HOME/.vim/undo  " persistent undo history
 set nobackup nowritebackup noswapfile dir=/tmp  " no temporary files
 set wildmode=longest,list,full  " complete paths like Bash
-" breaks VS Code
-vnoremap p pgvy " keep copy buffer when pasting over in visual mode
 
 " key maps
 " Exit insert mode by typing “kj” instead of hitting Escape
