@@ -166,9 +166,11 @@ vim.opt.spelloptions = "camel"
 
 vim.opt.list = true
 vim.opt.listchars = {
-  nbsp = "~", tab = ">-",
-  eol = "↲", trail = "·",
-  extends = "›", precedes = "‹",
+  nbsp = "~",
+  tab = ">-",
+  trail = "·",
+  extends = "›",
+  precedes = "‹",
 }
 vim.opt.wrap = false
 vim.opt.sidescrolloff = 5
