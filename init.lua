@@ -171,6 +171,7 @@ vim.opt.listchars = {
   extends = "›", precedes = "‹",
 }
 vim.opt.wrap = false
+vim.opt.sidescrolloff = 5
 vim.opt.linebreak = true
 vim.opt.showbreak = "↪"
 vim.opt.colorcolumn = "100"
