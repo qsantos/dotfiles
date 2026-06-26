@@ -134,6 +134,29 @@ require("nvim-tree").setup({
   update_focused_file = { enable = true },
 })
 
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+local open_all_selected = function(prompt_bufnr)
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local multi = picker:get_multi_selection()
+  if #multi == 0 then
+    actions.select_default(prompt_bufnr)
+    return
+  end
+  actions.close(prompt_bufnr)
+  for _, entry in ipairs(multi) do
+    vim.cmd("edit " .. vim.fn.fnameescape(entry.path or entry.filename or entry.value))
+  end
+end
+require("telescope").setup({
+  defaults = {
+    mappings = {
+      i = { ["<CR>"] = open_all_selected },
+      n = { ["<CR>"] = open_all_selected },
+    },
+  },
+})
+
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
