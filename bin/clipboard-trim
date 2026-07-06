@@ -10,10 +10,12 @@ while true; do
     current=$(timeout -k 1 2 xclip -o -selection clipboard 2>/dev/null) || { sleep 0.2; continue; }
     if [ "$current" != "$prev" ]; then
         stripped=$(printf '%s' "$current" | sed 's/[[:blank:]]*$//')
-        if [ "$stripped" != "$current" ]; then
+        if [ "$stripped" != "$current" ] && printf '%s' "$current" | grep -q '[^[:space:]]'; then
             printf '%s' "$stripped" | xclip -i -selection clipboard
+            prev="$stripped"
+        else
+            prev="$current"
         fi
-        prev="$stripped"
     fi
     sleep 0.2
 done
