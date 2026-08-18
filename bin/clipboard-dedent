@@ -1,0 +1,8 @@
+#!/bin/bash
+# Dedent clipboard by the first line's leading-space count.
+# Each line has up to N leading spaces stripped, where N = first line's indent.
+set -e
+xclip -o -selection clipboard | awk '
+    NR == 1 { match($0, /^ */); n = RLENGTH }
+    { sub("^ {0," n "}", ""); print }
+' | xclip -i -selection clipboard
