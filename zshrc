@@ -53,6 +53,12 @@ precmd() {
 autoload -Uz compinit
 compinit
 
+# compinit demotes ^I from expand-or-complete to complete-word when the
+# completer list contains _expand; take the binding back so that Tab keeps
+# expanding globs. This only bites when compinit sees the completer zstyle
+# below, i.e. when re-sourcing this file, hence restoring it unconditionally.
+bindkey '^I' expand-or-complete
+
 source ~/.bashrc
 
 zstyle ':completion:*' auto-description 'specify: %d'
