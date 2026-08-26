@@ -1,5 +1,6 @@
 #!/bin/bash
-# Strip trailing whitespace from clipboard content whenever it changes
+# Strip trailing whitespace from clipboard content whenever it changes,
+# and blank out the bullet Claude Code puts in front of the first line.
 prev=""
 while true; do
     targets=$(timeout -k 1 2 xclip -o -selection clipboard -t TARGETS 2>/dev/null) || { sleep 0.2; continue; }
@@ -9,7 +10,11 @@ while true; do
     esac
     current=$(timeout -k 1 2 xclip -o -selection clipboard 2>/dev/null) || { sleep 0.2; continue; }
     if [ "$current" != "$prev" ]; then
-        stripped=$(printf '%s' "$current" | sed 's/[[:blank:]]*$//')
+        # The bullet becomes a space rather than being deleted, so the first line
+        # keeps the same indentation as the rest of the block.
+        stripped=$(printf '%s' "$current" | sed -E \
+            -e 's/[[:blank:]]*$//' \
+            -e '0,/[^[:blank:]]/ s/^(⏺|●|•)/ /')
         if [ "$stripped" != "$current" ] && printf '%s' "$current" | grep -q '[^[:space:]]'; then
             printf '%s' "$stripped" | xclip -i -selection clipboard
             prev="$stripped"
