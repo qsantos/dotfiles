@@ -38,7 +38,7 @@ alias ins='sudo apt install'
 alias rem='sudo apt remove --purge --autoremove'
 
 # network
-alias y='yt-dlp -i -o "%(upload_date)s - %(title)s - %(id)s.%(ext)s" --no-playlist -f248+bestaudio/bestvideo+bestaudio/best --merge-output-format mkv'
+alias y='yt-dlp -i -o "%(upload_date)s - %(title)s - %(id)s.%(ext)s" --no-playlist -f248+bestaudio/bestvideo+bestaudio/best --merge-output-format mkv --cookies-from-browser firefox'
 alias ymp3='yt-dlp -i -o "%(upload_date)s - %(title)s - %(id)s.%(acodec)s" --no-playlist -fbestaudio'
 alias playlist='youtube-dl -i -o "%(playlist_index)s-%(title)s - %(id)s.%(ext)s" -f248+bestaudio/bestvideo+bestaudio/best --merge-output-format mkv'
 alias wget='wget --content-disposition'
@@ -80,6 +80,7 @@ alias gg='git grep --recurse-submodules'
 alias gh='git stash'
 alias gl='git log --oneline --decorate'
 alias gm='git commit'
+alias gmp='git commit --patch'
 alias gma='git commit --all'
 alias gmam='git commit --amend'
 alias go='git checkout --recurse-submodules'
@@ -171,3 +172,5 @@ ulimit -d unlimited
 if [ -e "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
+. "/home/qsantos/.deno/env"
+# source /home/qsantos/.local/share/bash-completion/completions/deno.bash

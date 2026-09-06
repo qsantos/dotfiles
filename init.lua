@@ -408,6 +408,7 @@ end
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()
-    vim.keymap.del("n", "gx", { buffer = true })
+    -- may not exist: some buffers get &ft set without running the ftplugin
+    pcall(vim.keymap.del, "n", "gx", { buffer = true })
   end,
 })

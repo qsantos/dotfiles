@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/qsantos/.zsh/completions:"* ]]; then export FPATH="/home/qsantos/.zsh/completions:$FPATH"; fi
 setopt histignorealldups #sharehistory
 setopt auto_pushd
 #setopt autocd
@@ -23,6 +25,7 @@ SAVEHIST=100000000
 HISTFILE=~/.zsh_history
 REPORTTIME=1
 setopt extended_history # logs the start and elapsed time
+setopt inc_append_history
 
 # Show the time when a command was run
 # From https://unix.stackexchange.com/a/598820/532252
@@ -74,7 +77,6 @@ zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
-
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
@@ -123,3 +125,4 @@ bindkey "^Z" Resume
 
 
 eval "$(direnv hook zsh)"
+# . "/home/qsantos/.deno/env"
